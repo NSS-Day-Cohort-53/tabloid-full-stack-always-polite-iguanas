@@ -5,6 +5,7 @@ import Register from "./Register";
 import Hello from "./Hello";
 import CategoryList from "./Categories/categoryList";
 import CategoryForm from "./Categories/categoryForm";
+import CommentForm from "./Comments/CommentForm";
 
 export default function ApplicationViews({ isLoggedIn }) {
   return (
@@ -15,6 +16,9 @@ export default function ApplicationViews({ isLoggedIn }) {
         </Route>
         <Route path="/categories" exact>
           <CategoryList />
+        </Route>
+        <Route path="/Comment/Create">
+          <CommentForm />
         </Route>
         <Route path="/categories/new" exact>
           <CategoryForm />
