@@ -4,9 +4,9 @@ import Login from "./Login";
 import Register from "./Register";
 import Hello from "./Hello";
 import CategoryList from "./Categories/categoryList";
+import CategoryForm from "./Categories/categoryForm";
 
 export default function ApplicationViews({ isLoggedIn }) {
-
   return (
     <main>
       <Switch>
@@ -14,7 +14,10 @@ export default function ApplicationViews({ isLoggedIn }) {
           {isLoggedIn ? <Hello /> : <Redirect to="/login" />}
         </Route>
         <Route path="/categories" exact>
-          <CategoryList/>
+          <CategoryList />
+        </Route>
+        <Route path="/categories/new" exact>
+          <CategoryForm />
         </Route>
 
         <Route path="/login">
@@ -27,4 +30,4 @@ export default function ApplicationViews({ isLoggedIn }) {
       </Switch>
     </main>
   );
-};
+}
