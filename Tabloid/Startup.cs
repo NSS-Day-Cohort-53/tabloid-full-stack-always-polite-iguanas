@@ -24,6 +24,7 @@ namespace Tabloid
         {
             services.AddTransient<IUserProfileRepository, UserProfileRepository>();
             services.AddTransient<ITagRepository, TagRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
 
             var firebaseProjectId = Configuration.GetValue<string>("FirebaseProjectId");
             var googleTokenUrl = $"https://securetoken.google.com/{firebaseProjectId}";
@@ -68,7 +69,7 @@ namespace Tabloid
                     { securitySchema, new[] { "Bearer"} }
                 });
             });
-          
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -24,10 +24,18 @@ export default function Header({ isLoggedIn }) {
           <Nav className="mr-auto" navbar>
             { /* When isLoggedIn === true, we will render the Home link */}
             {isLoggedIn &&
-              <NavItem>
-                <NavLink tag={RRNavLink} to="/">Home</NavLink>
-                <NavLink tag={RRNavLink} to="/tags">Tags</NavLink>
-              </NavItem>
+              <>
+                <NavItem>
+                  <NavLink tag={RRNavLink} to="/">Home</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink tag={RRNavLink} to="/tags">Tags</NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink tag={RRNavLink} to="/categories">Category Management</NavLink>
+                </NavItem>
+              </>
+
             }
           </Nav>
           <Nav navbar>
