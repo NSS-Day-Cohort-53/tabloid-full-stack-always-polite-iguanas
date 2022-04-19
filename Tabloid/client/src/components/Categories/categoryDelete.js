@@ -1,23 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getCategoryById } from "../../modules/categoryManager";
+import { deleteCategory, getCategoryById } from "../../modules/categoryManager";
+import { useHistory, Link } from "react-router-dom";
+import { Button } from "reactstrap";
 
 const DeleteCategory = () => {
-    const [category, setCategory] = useState();
-    const { id } = useParams();
+  const history = useHistory();
+  const [category, setCategory] = useState();
+  const { id } = useParams();
 
-    useEffect(() => {
-        getCategoryById(id).then(setCategory);
-    }, []);
+  useEffect(() => {
+    getCategoryById(id).then(setCategory);
+  }, [id]);
 
-    if (!category) {
-        return null;
-    }
+  if (!category) {
+    return null;
+  }
 
-    const handleDelete = (evt) => {
-        evt.preventDefault();
-        
-    }
-}
+  const handleDelete = (evt) => {
+    evt.preventDefault();
+    deleteCategory(id).then((p) => {
+      history.push("/categories");
+    });
+  };
 
-export default DeleteCategory
+  return (
+      <div>
+          <header>Are you sure you want to delete this category?</header>
+          <div>Category: {category.name}</div>
+          <Button className="btn btn-primary" onClick={handleDelete}>Delete</Button>
+          <Link to="/categories">Return to Index</Link>
+      </div>
+  )
+};
+
+export default DeleteCategory;
