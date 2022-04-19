@@ -1,0 +1,11 @@
+﻿USE [Tabloid]
+GO
+
+
+
+
+ALTER TABLE Post
+ADD CONSTRAINT "FK_Post_Category"
+FOREIGN KEY (CategoryId)
+REFERENCES Category(Id)
+ON DELETE SET DEFAULT;
