@@ -8,7 +8,7 @@ using Tabloid.Repositories;
 
 namespace Tabloid.Controllers
 {
-    [Authorize]
+    
     [Route("api/[controller]")]
     [ApiController]
     public class CategoryController : ControllerBase
@@ -52,7 +52,7 @@ namespace Tabloid.Controllers
         public IActionResult Delete(int id)
         {
             _categoryRepository.Delete(id);
-            return NoContent();
+            return Ok();
         }
         private UserProfile GetCurrentUserProfile()
         {
