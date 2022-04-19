@@ -1,8 +1,10 @@
 ﻿USE [Tabloid]
 GO
 
+INSERT INTO Category (Name) VALUES ('No Category');
 
-
+ALTER TABLE Post
+DROP CONSTRAINT "FK_Post_Category";
 
 ALTER TABLE Post
 ADD CONSTRAINT "FK_Post_Category"
