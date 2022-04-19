@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
 import Hello from "./Hello";
+import PostList from "./posts/PostList";
 import CategoryList from "./Categories/categoryList";
 import CategoryForm from "./Categories/categoryForm";
 import DeleteCategory from "./Categories/categoryDelete";
@@ -16,6 +17,9 @@ export default function ApplicationViews({ isLoggedIn }) {
         </Route>
         <Route path="/categories" exact>
           <CategoryList />
+        </Route>
+        <Route path="/posts" exact>
+          {isLoggedIn ? <PostList /> : <Redirect to="/login" />}
         </Route>
         <Route path="/categories/new" exact>
           <CategoryForm />
