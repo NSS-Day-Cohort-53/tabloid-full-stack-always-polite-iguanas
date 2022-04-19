@@ -13,7 +13,7 @@ export default function ApplicationViews({ isLoggedIn }) {
         <Route path="/" exact>
           {isLoggedIn ? <Hello /> : <Redirect to="/login" />}
         </Route>
-        <Route path="/categories">
+        <Route path="/categories" exact>
           <CategoryList/>
         </Route>
 
