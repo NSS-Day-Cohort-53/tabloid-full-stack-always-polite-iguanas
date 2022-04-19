@@ -16,6 +16,7 @@ const CategoryList = () => {
 
   return (
     <div className="container">
+      <Link to="/categories/new">Create New Category</Link>
       <div className="row justify-content-center">
         <ListGroup>
           {categories.map((c) => {
