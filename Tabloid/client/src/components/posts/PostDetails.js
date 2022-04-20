@@ -5,11 +5,11 @@ import { getPostById } from "../../modules/postManager";
 import { useParams } from "react-router-dom";
 
 const PostDetails = () => {
-  const [post, setPosts] = useState({});
+  const [post, setPost] = useState({});
   const { postId } = useParams();
 
   const getPosts = (id) => {
-    getPostById(id).then((post) => setPosts(post));
+    getPostById(id).then((postFetched) => setPost(postFetched));
   };
 
   useEffect(() => {

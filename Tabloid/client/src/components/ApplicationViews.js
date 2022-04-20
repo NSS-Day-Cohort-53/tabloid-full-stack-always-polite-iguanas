@@ -20,10 +20,10 @@ export default function ApplicationViews({ isLoggedIn }) {
           <CategoryList />
         </Route>
         <Route path="/posts" exact>
-          <PostList />
+          {isLoggedIn ? <PostList /> : <Redirect to="/login" />}
         </Route>
-        <Route path="/posts/:postId" exact>
-          <PostDetails />
+        <Route path="/posts/:postId">
+          {isLoggedIn ? <PostDetails /> : <Redirect to="/login" />}
         </Route>
         <Route path="/categories/new" exact>
           <CategoryForm />
@@ -40,7 +40,6 @@ export default function ApplicationViews({ isLoggedIn }) {
         <Route path="/tags" exact>
           <TagList />
         </Route>
-
       </Switch>
     </main>
   );
