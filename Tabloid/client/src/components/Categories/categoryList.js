@@ -20,12 +20,16 @@ const CategoryList = () => {
       <div className="row justify-content-center">
         <ListGroup>
           {categories.map((c) => {
-            return (
-              <ListGroupItem key={c.id}>
-                {c.name} <Link to={`/categories/edit/${c.id}`}>Edit</Link>{" "}
-                <Link to={`/categories/delete/${c.id}`}>Delete</Link>
-              </ListGroupItem>
-            );
+            if (c.name != "No Category") {
+              return (
+                <ListGroupItem key={c.id}>
+                  {c.name} <Link to={`/categories/edit/${c.id}`}>Edit</Link>{" "}
+                  <Link to={`/categories/delete/${c.id}`}>Delete</Link>
+                </ListGroupItem>
+              );
+            } else {
+              return <ListGroupItem key={c.id}>{c.name}</ListGroupItem>;
+            }
           })}
         </ListGroup>
       </div>
