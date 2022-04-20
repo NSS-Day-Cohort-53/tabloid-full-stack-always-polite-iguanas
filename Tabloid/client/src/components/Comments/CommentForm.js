@@ -6,12 +6,11 @@ import { useParams } from "react-router-dom";
 
 const CommentForm = () => {
   const history = useHistory();
+  const { postId } = useParams();
   const emptyComment = {
-    PostId: "",
-    UserProfileId: "",
+    PostId: 1,
     Subject: "",
-    Content: "",
-    CreateDateTime: ""
+    Content: ""
   };
 
   const [comment, setComment] = useState(emptyComment);
@@ -27,7 +26,9 @@ const CommentForm = () => {
   };
   const handleSave = (evt) => {
     evt.preventDefault();
-    addComment(comment).then((p) => {
+    const commentCopy = { ...comment };
+    commentCopy.PostId = parseInt(postId);
+    addComment(commentCopy).then((p) => {
       history.push("/");
     });
   };

@@ -14,9 +14,17 @@ namespace Tabloid.Controllers
     public class CommentController : ControllerBase
     {
         private readonly ICommentRepository _commentRepo;
-        public CommentController(ICommentRepository commentRepository)
+        private readonly IUserProfileRepository _userProfileRepo;
+        public CommentController(ICommentRepository commentRepository, IUserProfileRepository userProfileRepository)
         {
             _commentRepo = commentRepository;
+            _userProfileRepo = userProfileRepository;
+        }
+
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepo.GetByFirebaseUserId(firebaseUserId);
         }
 
         [HttpGet("{id}")]
@@ -29,6 +37,8 @@ namespace Tabloid.Controllers
         public IActionResult Post(Comment comment)
         {
             comment.CreateDateTime = DateTime.Now;
+            UserProfile currentUser = GetCurrentUserProfile();
+            comment.UserProfileId = currentUser.Id;
             _commentRepo.Add(comment);
             return Ok(comment);
         }

@@ -24,6 +24,9 @@ export default function ApplicationViews({ isLoggedIn }) {
         <Route path="/categories/new" exact>
           <CategoryForm />
         </Route>
+        <Route path="/Comment/New/:postId" exact>
+          <CommentForm />
+        </Route>
 
         <Route path="/login">
           <Login />
