@@ -38,6 +38,11 @@ export default function Header({ isLoggedIn }) {
                   </NavLink>
                 </NavItem>
                 <NavItem>
+                  <NavLink tag={RRNavLink} to="/tags">
+                    Tags
+                  </NavLink>
+                </NavItem>
+                <NavItem>
                   <NavLink tag={RRNavLink} to="/categories">
                     Category Management
                   </NavLink>
@@ -58,6 +63,7 @@ export default function Header({ isLoggedIn }) {
                     Logout
                   </a>
                 </NavItem>
+
               </>
             )}
             {!isLoggedIn && (
