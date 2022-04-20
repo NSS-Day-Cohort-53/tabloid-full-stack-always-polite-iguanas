@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { NavLink as RRNavLink } from "react-router-dom";
 import {
   Collapse,
@@ -11,10 +12,15 @@ import {
 } from "reactstrap";
 import { logout } from "../modules/authManager";
 
+
 export default function Header({ isLoggedIn }) {
+  const history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
-
+const handleLogout = () => {
+  logout();
+  history.push("/");
+}
   return (
     <div>
       <Navbar color="light" light expand="md">
@@ -58,7 +64,7 @@ export default function Header({ isLoggedIn }) {
                     aria-current="page"
                     className="nav-link"
                     style={{ cursor: "pointer" }}
-                    onClick={logout}
+                    onClick={handleLogout}
                   >
                     Logout
                   </a>
