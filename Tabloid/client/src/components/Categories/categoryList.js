@@ -28,7 +28,11 @@ const CategoryList = () => {
                 </ListGroupItem>
               );
             } else {
-              return <ListGroupItem key={c.id}>{c.name}</ListGroupItem>;
+              return (
+                <ListGroupItem key={c.id}>
+                  {c.name} <strong>Default Category</strong>
+                </ListGroupItem>
+              );
             }
           })}
         </ListGroup>
