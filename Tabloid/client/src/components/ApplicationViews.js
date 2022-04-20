@@ -7,6 +7,7 @@ import TagList from "./Tag/TagList";
 import PostList from "./posts/PostList";
 import CategoryList from "./Categories/categoryList";
 import CategoryForm from "./Categories/categoryForm";
+import DeleteCategory from "./Categories/categoryDelete";
 
 export default function ApplicationViews({ isLoggedIn }) {
   return (
@@ -23,6 +24,9 @@ export default function ApplicationViews({ isLoggedIn }) {
         </Route>
         <Route path="/categories/new" exact>
           <CategoryForm />
+        </Route>
+        <Route path="/categories/delete/:id" exact>
+          <DeleteCategory/>
         </Route>
 
         <Route path="/login">
