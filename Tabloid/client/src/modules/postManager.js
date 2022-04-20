@@ -1,6 +1,6 @@
 import { getToken } from "./authManager";
 
-const _apiUrl = "/api/post";
+const _apiUrl = "/api/Post";
 
 export const getAllPosts = () => {
   return getToken().then((token) => {
@@ -13,7 +13,23 @@ export const getAllPosts = () => {
       if (resp.ok) {
         return resp.json();
       } else {
-        throw new Error("An error occurred retrieving categories");
+        throw new Error("An error occurred retrieving posts");
+      }
+    });
+  });
+};
+export const getPostById = (id) => {
+  return getToken().then((token) => {
+    return fetch(`${_apiUrl}/${id}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((resp) => {
+      if (resp.ok) {
+        return resp.json();
+      } else {
+        throw new Error("An error occurred retrieving post");
       }
     });
   });

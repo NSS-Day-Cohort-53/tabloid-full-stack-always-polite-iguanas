@@ -122,5 +122,15 @@ namespace Tabloid.Utils
                 cmd.Parameters.AddWithValue(name, value);
             }
         }
+        public static bool GetBool(SqlDataReader reader, string column)
+        {
+            var ordinal = reader.GetOrdinal(column);
+            if (reader.GetBoolean(ordinal))
+            {
+                return false;
+            }
+
+            return reader.GetBoolean(ordinal);
+        }
     }
 }
