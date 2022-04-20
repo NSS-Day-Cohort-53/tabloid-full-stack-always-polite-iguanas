@@ -22,7 +22,7 @@ const PostList = () => {
           {posts.map((post) => {
             return (
               <ListGroupItem key={post.id}>
-                <Post post={post} key={post.id} />
+                <Post post={post} />
                 <Link to={`/posts/${post.id}`}>Details</Link>
               </ListGroupItem>
             );

@@ -22,7 +22,11 @@ const PostDetails = () => {
       </p>
       <p>Posted by: {post.userProfile?.displayName}</p>
       <CardBody>
-        {post.imageLocation !== null ? <img src={post.imageLocation} /> : ""}
+        {post.imageLocation !== null ? (
+          <img src={post.imageLocation} alt="header" />
+        ) : (
+          ""
+        )}
         <p />
         <p>{post.content}</p>
       </CardBody>
