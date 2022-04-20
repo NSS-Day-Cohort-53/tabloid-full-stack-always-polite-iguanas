@@ -55,7 +55,7 @@ namespace Tabloid.Repositories
                         SELECT Id, [Name],
                           FROM BeanVariety
                          WHERE Id = @id;";
-                    cmd.Parameters.AddWithValue("@id", id);
+                    DbUtils.AddParameter(cmd, "@id", id);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
