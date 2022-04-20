@@ -8,7 +8,6 @@ const DeleteCategory = () => {
   const history = useHistory();
   const [category, setCategory] = useState();
   const { id } = useParams();
-debugger
   useEffect(() => {
    
     getCategoryById(id).then(setCategory);

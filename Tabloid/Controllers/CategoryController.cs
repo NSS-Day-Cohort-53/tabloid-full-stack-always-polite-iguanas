@@ -35,24 +35,53 @@ namespace Tabloid.Controllers
         [HttpPost]
         public IActionResult Post(Category category)
         {
-            _categoryRepository.Add(category);
+            UserProfile loggedInUser = GetCurrentUserProfile();
+            if (loggedInUser.UserTypeId != 1)
+            {
+                return NotFound();
+            }
+            else
+            {
+                _categoryRepository.Add(category);
             return Ok(category);
+
+            }
         }
         [HttpPut("{id}")]
         public IActionResult Update(int id, Category category)
         {
+            UserProfile loggedInUser = GetCurrentUserProfile();
+            if (loggedInUser.UserTypeId != 1)
+            {
+                return NotFound();
+            }
+            else
+            {
             if (id != category.Id)
             {
                 return BadRequest();
             }
             _categoryRepository.Update(category);
             return NoContent();
+
+            }
         }
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            _categoryRepository.Delete(id);
-            return NoContent();
+            UserProfile loggedInUser = GetCurrentUserProfile();
+            if (loggedInUser.UserTypeId != 1)
+            {
+                return NotFound();
+
+            } 
+            else
+            {
+                
+                _categoryRepository.Delete(id);
+                return NoContent();
+
+            }
         }
         private UserProfile GetCurrentUserProfile()
         {
