@@ -38,7 +38,7 @@ namespace Tabloid.Controllers
             UserProfile loggedInUser = GetCurrentUserProfile();
             if (loggedInUser.UserTypeId != 1)
             {
-                return NotFound();
+                return Forbid();
             }
             else
             {
@@ -53,7 +53,7 @@ namespace Tabloid.Controllers
             UserProfile loggedInUser = GetCurrentUserProfile();
             if (loggedInUser.UserTypeId != 1)
             {
-                return NotFound();
+                return Forbid();
             }
             else
             {
@@ -72,7 +72,7 @@ namespace Tabloid.Controllers
             UserProfile loggedInUser = GetCurrentUserProfile();
             if (loggedInUser.UserTypeId != 1)
             {
-                return NotFound();
+                return Forbid();
 
             } 
             else
