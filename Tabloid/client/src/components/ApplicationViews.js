@@ -7,6 +7,7 @@ import TagList from "./Tag/TagList";
 import PostList from "./posts/PostList";
 import CategoryList from "./Categories/categoryList";
 import CategoryForm from "./Categories/categoryForm";
+import TagForm from "./Tag/tagForm";
 
 export default function ApplicationViews({ isLoggedIn }) {
   return (
@@ -35,6 +36,10 @@ export default function ApplicationViews({ isLoggedIn }) {
 
         <Route path="/tags" exact>
           <TagList />
+        </Route>
+
+        <Route path="/tags/new" exact>
+          <TagForm />
         </Route>
 
       </Switch>
