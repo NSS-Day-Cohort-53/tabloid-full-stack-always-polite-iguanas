@@ -30,7 +30,7 @@ export default function ApplicationViews({ isLoggedIn }) {
         <Route path="/categories/new" exact>
           <CategoryForm />
         </Route>
-        <Route path="/Comment/New/:postId" exact>
+        <Route path="/posts/newComment/:postId(\d+)">
           <CommentForm />
         </Route>
         <Route path="/categories/delete/:id" exact>

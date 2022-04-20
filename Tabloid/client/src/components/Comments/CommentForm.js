@@ -28,9 +28,17 @@ const CommentForm = () => {
     evt.preventDefault();
     const commentCopy = { ...comment };
     commentCopy.PostId = parseInt(postId);
-    addComment(commentCopy).then((p) => {
+    addComment(commentCopy).then(() => {
       history.push("/");
     });
+  };
+
+  const SubmitButton = () => {
+    if (comment.Subject && comment.Content){
+      return <Button className="btn btn-primary" onClick={handleSave}>Submit</Button>
+    } else {
+      return <button type="button" disabled>Button</button>
+    };
   };
 
   return (
@@ -43,7 +51,7 @@ const CommentForm = () => {
               <Label for="Content">Content</Label>
               <Input type="text" name="Content" id="Content" placeholder="Content" value={comment.Content} onChange={handleInputChange}/>
           </FormGroup>
-          <Button className="btn btn-primary" onClick={handleSave}>Submit</Button>
+          <SubmitButton />
       </Form>
   )
 };

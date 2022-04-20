@@ -1,8 +1,9 @@
 import React from "react";
-import { Card, CardBody } from "reactstrap";
+import { Button, Card, CardBody } from "reactstrap";
 import { useState, useEffect } from "react";
 import { getPostById } from "../../modules/postManager";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const PostDetails = () => {
   const [post, setPost] = useState({});
@@ -31,6 +32,9 @@ const PostDetails = () => {
         <p>{post.content}</p>
       </CardBody>
       <p>Published On: {post.publishDateTime}</p>
+      <Button>
+      <Link to={`/posts/newComment/${post.id}`}>Add a comment</Link>
+      </Button>
     </Card>
   );
 };
