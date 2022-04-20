@@ -29,7 +29,7 @@ const CommentForm = () => {
     const commentCopy = { ...comment };
     commentCopy.PostId = parseInt(postId);
     addComment(commentCopy).then(() => {
-      history.push("/");
+      history.push(`/posts/${postId}`);
     });
   };
 
