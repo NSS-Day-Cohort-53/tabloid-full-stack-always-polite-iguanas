@@ -20,7 +20,7 @@ const CategoryList = () => {
       <div className="row justify-content-center">
         <ListGroup>
           {categories.map((c) => {
-            if (c.name != "No Category") {
+            if (c.name !== "No Category") {
               return (
                 <ListGroupItem key={c.id}>
                   {c.name} <Link to={`/categories/edit/${c.id}`}>Edit</Link>{" "}
