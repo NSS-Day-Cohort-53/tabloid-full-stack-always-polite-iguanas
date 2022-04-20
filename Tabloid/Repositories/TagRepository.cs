@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Tabloid.Models;
+using Tabloid.Utils;
 
 namespace Tabloid.Repositories
 {
@@ -34,8 +34,8 @@ namespace Tabloid.Repositories
                         {
                             tags.Add(new Tag()
                             {
-                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
-                                Name = reader.GetString(reader.GetOrdinal("Name")),
+                                Id = DbUtils.GetInt(reader,("Id")),
+                                Name = DbUtils.GetString(reader,("Name")),
                             });
                         }
                             return tags;
@@ -64,8 +64,8 @@ namespace Tabloid.Repositories
                         {
                             tag = new Tag()
                             {
-                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
-                                Name = reader.GetString(reader.GetOrdinal("Name")),
+                                Id = DbUtils.GetInt(reader,("Id")),
+                                Name = DbUtils.GetString(reader,("Name")),
                             };
 
                         }

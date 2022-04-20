@@ -33,7 +33,7 @@ export default function ApplicationViews({ isLoggedIn }) {
           <Register />
         </Route>
 
-        <Route path="/tags">
+        <Route path="/tags" exact>
           <TagList />
         </Route>
 
