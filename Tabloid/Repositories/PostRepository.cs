@@ -44,7 +44,7 @@ namespace Tabloid.Repositories
                                 ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
                                 CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
                                 PublishDateTime = DbUtils.GetDateTime(reader, "PublishDateTime"),
-                                IsApproved = reader.GetBoolean(reader.GetOrdinal("IsApproved")),
+                                IsApproved = DbUtils.GetBool(reader, "IsApproved"),
                                 CategoryId = DbUtils.GetInt(reader, "CategoryId"),
                                 UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
                                 UserProfile = new UserProfile()
