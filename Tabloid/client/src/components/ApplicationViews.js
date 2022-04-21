@@ -12,6 +12,7 @@ import TagForm from "./Tag/tagForm";
 import CommentForm from "./Comments/CommentForm";
 import DeleteCategory from "./Categories/categoryDelete";
 import EditCategory from "./Categories/categoryEdit";
+import UserList from "./users/userList";
 
 export default function ApplicationViews({ isLoggedIn }) {
   return (
@@ -41,6 +42,9 @@ export default function ApplicationViews({ isLoggedIn }) {
         </Route>
         <Route path="/categories/edit/:id(\d+)" exact>
           {isLoggedIn ? <EditCategory /> : <Redirect to="/login" />}
+        </Route>
+        <Route path="/userProfiles" exact>
+          {isLoggedIn ? <UserList/> : <Redirect to="/login" />}
         </Route>
 
         <Route path="/login">

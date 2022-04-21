@@ -89,8 +89,35 @@ namespace Tabloid.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT Id, DisplayName, FirstName, LastName, Email, CreateDateTime, ImageLocation, UserTypeId FROM UserProfile;";
+                    cmd.CommandText = "SELECT u.Id as UserId, u.DisplayName, u.FirstName, u.LastName, u.Email, u.CreateDateTime, u.ImageLocation, u.UserTypeId, ut.Id, ut.Name FROM UserProfile u LEFT JOIN UserType ut ON u.UserTypeId= ut.Id;";
 
+                    var reader = cmd.ExecuteReader();
+                    {
+                        List<UserProfile> users = new List<UserProfile>();
+                        while (reader.Read())
+                        {
+                            users.Add(new UserProfile()
+                            {
+                                Id = DbUtils.GetInt(reader, "UserId"),
+                                DisplayName = DbUtils.GetString(reader, "DisplayName"),
+                                FirstName = DbUtils.GetString(reader, "FirstName"),
+                                LastName = DbUtils.GetString(reader, "LastName"),
+                                Email = DbUtils.GetString(reader, "Email"),
+                                CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
+                                ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
+                                UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
+                                UserType = new UserType()
+                                {
+                                    Id = DbUtils.GetInt(reader, "Id"),
+                                    Name = DbUtils.GetString(reader, "Name"),
+                                }
+
+                            });
+                        };
+                        reader.Close();
+
+                        return users;
+                    }
 
                 }
             }
