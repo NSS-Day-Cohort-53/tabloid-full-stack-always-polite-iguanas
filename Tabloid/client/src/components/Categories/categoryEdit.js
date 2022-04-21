@@ -8,7 +8,7 @@ import { Form, FormGroup, Label, Input, Button } from "reactstrap";
 const EditCategory = () => {
     const history = useHistory();
     const { id } = useParams();
-    const [category, setCategory] = useState({});
+    const [category, setCategory] = useState({name: ""});
 
     useEffect(() => {
         getCategoryById(id).then(setCategory);
