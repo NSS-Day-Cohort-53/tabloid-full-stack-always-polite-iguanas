@@ -13,7 +13,7 @@ export const getAllTags = () => {
             if (resp.ok) {
                 return resp.json();
             } else {
-                throw new Error("An error occurred retrieving categories");
+                throw new Error("An error occurred retrieving tags");
             }
         });
     });
