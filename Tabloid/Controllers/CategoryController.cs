@@ -62,7 +62,7 @@ namespace Tabloid.Controllers
                 return BadRequest();
             }
             _categoryRepository.Update(category);
-            return NoContent();
+            return Ok(category);
 
             }
         }
