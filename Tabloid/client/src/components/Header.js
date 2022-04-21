@@ -53,6 +53,11 @@ const handleLogout = () => {
                     Category Management
                   </NavLink>
                 </NavItem>
+                <NavItem>
+                  <NavLink tag={RRNavLink} to="/userProfiles">
+                    User List
+                  </NavLink>
+                </NavItem>
               </>
             )}
           </Nav>
