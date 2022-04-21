@@ -22,3 +22,20 @@ export const addComment = (comment) => {
   });
   });
 };
+
+export const getAllPostComments = (id) => {
+  return getToken().then((token) => {
+    return fetch(`${baseUrl}/${id}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((resp) => {
+      if (resp.ok) {
+        return resp.json();
+      } else {
+        throw new Error("An error occured retrieving comments");
+      }
+    });
+  });
+};
