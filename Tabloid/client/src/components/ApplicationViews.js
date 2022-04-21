@@ -37,11 +37,11 @@ export default function ApplicationViews({ isLoggedIn }) {
           <CommentForm />
         </Route>
        
-        <Route path="/categories/delete/:id" exact>
+        <Route path="/categories/delete/:id(\d+)" exact>
         {isLoggedIn ? <Hello /> : <Redirect to="/login" />}
           <DeleteCategory/>
         </Route>
-        <Route path="/categories/edit/:id" exact>
+        <Route path="/categories/edit/:id(\d+)" exact>
           <EditCategory/>
         </Route>
 
