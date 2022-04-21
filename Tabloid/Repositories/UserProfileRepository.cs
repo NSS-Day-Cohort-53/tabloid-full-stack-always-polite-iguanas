@@ -82,19 +82,19 @@ namespace Tabloid.Repositories
             }
         }
 
-        public List<UserProfile> getAllUsers()
-        {
-            using (var conn = Connection)
-            {
-                conn.Open();
-                using (var cmd = conn.CreateCommand())
-                {
-                    cmd.CommandText = "SELECT Id, DisplayName, FirstName, LastName, Email, CreateDateTime, ImageLocation, UserTypeId FROM UserProfile;";
+        //public List<UserProfile> getAllUsers()
+        //{
+        //    using (var conn = Connection)
+        //    {
+        //        conn.Open();
+        //        using (var cmd = conn.CreateCommand())
+        //        {
+        //            cmd.CommandText = "SELECT Id, DisplayName, FirstName, LastName, Email, CreateDateTime, ImageLocation, UserTypeId FROM UserProfile;";
 
 
-                }
-            }
-        }
+        //        }
+        //    }
+        //}
 
         /*
         public UserProfile GetByFirebaseUserId(string firebaseUserId)

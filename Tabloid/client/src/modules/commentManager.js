@@ -39,3 +39,20 @@ export const getAllPostComments = (id) => {
     });
   });
 };
+
+export const deleteComment = (id) => {
+  return getToken().then((token) => {
+    return fetch(`${baseUrl}/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        throw new Error("An error occured while trying to delete this comment");
+      }
+    })
+  })
+}

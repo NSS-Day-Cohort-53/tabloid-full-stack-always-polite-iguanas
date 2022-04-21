@@ -42,5 +42,12 @@ namespace Tabloid.Controllers
         {
             return Ok(_commentRepo.GetAllByPostId(id));
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            _commentRepo.Delete(id);
+            return NoContent();
+        }
     }
 }
