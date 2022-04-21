@@ -20,8 +20,7 @@ export default function ApplicationViews({ isLoggedIn }) {
           {isLoggedIn ? <Hello /> : <Redirect to="/login" />}
         </Route>
         <Route path="/categories" exact>
-        {isLoggedIn ? <Hello /> : <Redirect to="/login" />}
-          <CategoryList />
+          {isLoggedIn ? <CategoryList /> : <Redirect to="/login" />}
         </Route>
         <Route path="/posts" exact>
           {isLoggedIn ? <PostList /> : <Redirect to="/login" />}
@@ -30,19 +29,17 @@ export default function ApplicationViews({ isLoggedIn }) {
           {isLoggedIn ? <PostDetails /> : <Redirect to="/login" />}
         </Route>
         <Route path="/categories/new" exact>
-        {isLoggedIn ? <Hello /> : <Redirect to="/login" />}
-          <CategoryForm />
+          {isLoggedIn ? <CategoryForm /> : <Redirect to="/login" />}
         </Route>
         <Route path="/posts/newComment/:postId(\d+)">
-          <CommentForm />
+          {isLoggedIn ? <CommentForm /> : <Redirect to="/login" />}
         </Route>
-       
+
         <Route path="/categories/delete/:id(\d+)" exact>
-        {isLoggedIn ? <Hello /> : <Redirect to="/login" />}
-          <DeleteCategory/>
+          {isLoggedIn ? <DeleteCategory /> : <Redirect to="/login" />}
         </Route>
         <Route path="/categories/edit/:id(\d+)" exact>
-          <EditCategory/>
+          {isLoggedIn ? <EditCategory /> : <Redirect to="/login" />}
         </Route>
 
         <Route path="/login">
@@ -54,8 +51,7 @@ export default function ApplicationViews({ isLoggedIn }) {
         </Route>
 
         <Route path="/tags" exact>
-        {isLoggedIn ? <Hello /> : <Redirect to="/login" />}
-          <TagList />
+          {isLoggedIn ? <TagList /> : <Redirect to="/login" />}
         </Route>
       </Switch>
     </main>
