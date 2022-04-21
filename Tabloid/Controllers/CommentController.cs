@@ -27,12 +27,6 @@ namespace Tabloid.Controllers
             return _userProfileRepo.GetByFirebaseUserId(firebaseUserId);
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetAllByPostId(int id)
-        {
-            return Ok(_commentRepo.GetAllByPostId(id));
-        }
-
         [HttpPost]
         public IActionResult Post(Comment comment)
         {
@@ -41,25 +35,6 @@ namespace Tabloid.Controllers
             comment.UserProfileId = currentUser.Id;
             _commentRepo.Add(comment);
             return Ok(comment);
-        }
-
-        [HttpPut("{id}")]
-        public IActionResult Update(int id, Comment comment)
-        {
-            if (id != comment.Id)
-            {
-                return BadRequest();
-            }
-
-            _commentRepo.Update(comment);
-            return NoContent();
-        }
-
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            _commentRepo.Delete(id);
-            return NoContent();
         }
     }
 }

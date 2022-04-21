@@ -8,7 +8,7 @@ const CommentForm = () => {
   const history = useHistory();
   const { postId } = useParams();
   const emptyComment = {
-    PostId: 1,
+    PostId: 0,
     Subject: "",
     Content: ""
   };
@@ -37,7 +37,7 @@ const CommentForm = () => {
     if (comment.Subject && comment.Content){
       return <Button className="btn btn-primary" onClick={handleSave}>Submit</Button>
     } else {
-      return <button type="button" disabled>Button</button>
+      return <Button className="btn btn-primary" disabled>Button</Button>
     };
   };
 
