@@ -9,6 +9,7 @@ import PostDetails from "./posts/PostDetails";
 import CategoryList from "./Categories/categoryList";
 import CategoryForm from "./Categories/categoryForm";
 import DeleteCategory from "./Categories/categoryDelete";
+import EditCategory from "./Categories/categoryEdit";
 
 export default function ApplicationViews({ isLoggedIn }) {
   return (
@@ -31,6 +32,9 @@ export default function ApplicationViews({ isLoggedIn }) {
         </Route>
         <Route path="/categories/delete/:id" exact>
           <DeleteCategory/>
+        </Route>
+        <Route path="/categories/edit/:id" exact>
+          <EditCategory/>
         </Route>
 
         <Route path="/login">
