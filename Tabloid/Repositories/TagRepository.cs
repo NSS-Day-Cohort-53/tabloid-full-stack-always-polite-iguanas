@@ -1,24 +1,13 @@
 ﻿using System.Collections.Generic;
-using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Tabloid.Models;
 using Tabloid.Utils;
 
 namespace Tabloid.Repositories
 {
-    public class TagRepository : ITagRepository
-    {
-        private readonly string _connectionString;
-        public TagRepository(IConfiguration configuration)
-        {
-            _connectionString = configuration.GetConnectionString("DefaultConnection");
-        }
-
-        private SqlConnection Connection
-        {
-            get { return new SqlConnection(_connectionString); }
-        }
-
+    public class TagRepository : BaseRepository, ITagRepository
+    {   
+        public TagRepository(IConfiguration configuration) : base(configuration) { }
         public List<Tag> GetAll()
         {
             using (var conn = Connection)
@@ -26,25 +15,28 @@ namespace Tabloid.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = "SELECT Id, [Name] FROM Tag ORDER BY Name";
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    cmd.CommandText = @"
+                        SELECT Id, [Name]
+                          FROM Tag";
+                    List<Tag> list = new List<Tag>();
+                    var reader = cmd.ExecuteReader();
+                    while (reader.Read())
                     {
-                        var tags = new List<Tag>();
-                        while (reader.Read())
+                        list.Add(new Tag()
                         {
-                            tags.Add(new Tag()
-                            {
-                                Id = DbUtils.GetInt(reader,("Id")),
-                                Name = DbUtils.GetString(reader,("Name")),
-                            });
-                        }
-                            return tags;
-                    };
+                            Id = DbUtils.GetInt(reader, "Id"),
+                            Name = DbUtils.GetString(reader, "Name"),
+                        });
+                    }
+                    reader.Close();
+                    return list;
+
                 }
+
             }
         }
 
-        public Tag Get(int id)
+        public Tag GetById(int id)
         {
             using (var conn = Connection)
             {
@@ -53,55 +45,43 @@ namespace Tabloid.Repositories
                 {
                     cmd.CommandText = @"
                         SELECT Id, [Name],
-                          FROM BeanVariety
+                          FROM Tag
                          WHERE Id = @id;";
                     DbUtils.AddParameter(cmd, "@id", id);
-
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    Tag tag = null;
+                    var reader = cmd.ExecuteReader();
+                    if (reader.Read())
                     {
-                        Tag tag = null;
-                        if (reader.Read())
-                        {
                             tag = new Tag()
                             {
                                 Id = DbUtils.GetInt(reader,("Id")),
                                 Name = DbUtils.GetString(reader,("Name")),
                             };
 
-                        }
-
-                        return tag;
                     }
+                    reader.Close();
+                    return tag;
+                    
                 }
             }
         }
 
-        //public void Add(BeanVariety variety)
-        //{
-        //    using (var conn = Connection)
-        //    {
-        //        conn.Open();
-        //        using (var cmd = conn.CreateCommand())
-        //        {
-        //            cmd.CommandText = @"
-        //                INSERT INTO BeanVariety ([Name], Region, Notes)
-        //                OUTPUT INSERTED.ID
-        //                VALUES (@name, @region, @notes)";
-        //            cmd.Parameters.AddWithValue("@name", variety.Name);
-        //            cmd.Parameters.AddWithValue("@region", variety.Region);
-        //            if (variety.Notes == null)
-        //            {
-        //                cmd.Parameters.AddWithValue("@notes", DBNull.Value);
-        //            }
-        //            else
-        //            {
-        //                cmd.Parameters.AddWithValue("@notes", variety.Notes);
-        //            }
+        public void Add(Tag tag)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"INSERT INTO Tag (Name)
+                                       OUTPUT INSERTED.ID
+                                       VALUES (@Name);";
+                    DbUtils.AddParameter(cmd, "@Name", tag.Name);
 
-        //            variety.Id = (int)cmd.ExecuteScalar();
-        //        }
-        //    }
-        //}
+                    tag.Id = (int)cmd.ExecuteScalar();
+                }
+            }
+        }
 
         //        public void Update(BeanVariety variety)
         //        {

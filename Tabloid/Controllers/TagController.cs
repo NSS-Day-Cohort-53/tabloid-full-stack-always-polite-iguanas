@@ -14,34 +14,32 @@ namespace Tabloid.Controllers
     public class TagController : ControllerBase
     {
         private readonly ITagRepository _tagRepository;
-        public TagController(ITagRepository tagRepository)
+        private readonly IUserProfileRepository _userProfileRepository;
+        public TagController(ITagRepository tagRepository, IUserProfileRepository userProfileRepository)
         {
             _tagRepository = tagRepository;
+            _userProfileRepository = userProfileRepository;
 
         }
             [HttpGet]
-            public IActionResult Get()
+            public IActionResult GetAllTags()
             {
                 return Ok(_tagRepository.GetAll());
             }
 
-            [HttpPost("{id}")]
-            public IActionResult Get(int id)
+            [HttpGet("{id}")]
+            public IActionResult GetTagsById(int id)
             {
-                var tag = _tagRepository.Get(id);
-                if (tag == null)
-                {
-                    return NotFound();
-                }
-                return Ok(tag);
+               
+                return Ok(_tagRepository.GetById(id));
             }
 
-        //[HttpPost]
-        //public IActionResult Post(Tag tag)
-        //{
-        //    _tagRepository.Add(tag);
-        //    return CreatedAtAction("Get", new { id = tag.Id }, tag);
-        //}
+        [HttpPost]
+        public IActionResult Post(Tag tag)
+        {
+            _tagRepository.Add(tag);
+            return Ok(tag);
+        }
 
         //[HttpPut("{id}")]
         //public IActionResult Put(int id, Tag tag)

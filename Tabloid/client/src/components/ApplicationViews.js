@@ -8,6 +8,7 @@ import PostList from "./posts/PostList";
 import PostDetails from "./posts/PostDetails";
 import CategoryList from "./Categories/categoryList";
 import CategoryForm from "./Categories/categoryForm";
+import TagForm from "./Tag/tagForm";
 import CommentForm from "./Comments/CommentForm";
 import DeleteCategory from "./Categories/categoryDelete";
 import EditCategory from "./Categories/categoryEdit";
@@ -53,7 +54,12 @@ export default function ApplicationViews({ isLoggedIn }) {
         <Route path="/tags" exact>
           {isLoggedIn ? <TagList /> : <Redirect to="/login" />}
         </Route>
+
+        <Route path="/tags/new">
+          <TagForm />
+        </Route>
+
       </Switch>
-    </main>
+    </main >
   );
 }

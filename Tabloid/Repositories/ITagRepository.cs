@@ -5,7 +5,9 @@ namespace Tabloid.Repositories
 {
     public interface ITagRepository
     {
-        Tag Get(int id);
-        List<Tag> GetAll();
+       public List<Tag> GetAll();
+       public Tag GetById(int id);
+       public void Add(Tag tag);
+
     }
 }
