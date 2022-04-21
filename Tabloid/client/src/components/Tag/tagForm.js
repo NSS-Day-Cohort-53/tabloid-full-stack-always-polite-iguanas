@@ -6,8 +6,16 @@ import { addTag } from "../../modules/tagManager";
 const TagForm = () => {
     const history = useHistory();
     const emptyTag = {
-        Name: "",
+        name: "",
     };
+
+    const SubmitButton = () => {
+        if (tag.name) {
+            return <Button className="btn btn-primary" onClick={handleSave}>Submit</Button>
+        } else {
+            return <button type="button" disabled>Submit</button>
+        }
+    }
 
     const [tag, setTag] = useState(emptyTag);
 
@@ -22,7 +30,7 @@ const TagForm = () => {
     };
     const handleSave = (evt) => {
         evt.preventDefault();
-        addTag(tag).then((p) => {
+        addTag(tag).then(() => {
             history.push("/tags");
         });
     };
@@ -33,7 +41,7 @@ const TagForm = () => {
                 <Label for="name">Name</Label>
                 <Input type="text" name="name" id="name" placeholder="tag name" value={tag.name} onChange={handleInputChange} />
             </FormGroup>
-            <Button className="btn btn-primary" onClick={handleSave}>Submit</Button>
+            <SubmitButton />
         </Form>
     )
 };

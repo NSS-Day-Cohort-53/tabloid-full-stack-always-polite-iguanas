@@ -26,7 +26,7 @@ export default function ApplicationViews({ isLoggedIn }) {
         <Route path="/categories/new" exact>
           <CategoryForm />
         </Route>
-        <Route path="/categories/delete/:id" exact>
+        <Route path="/categories/delete/:id(\d+)">
           <DeleteCategory />
         </Route>
 
@@ -42,11 +42,11 @@ export default function ApplicationViews({ isLoggedIn }) {
           <TagList />
         </Route>
 
-        <Route path="/tags/new" exact>
+        <Route path="/tags/new">
           <TagForm />
         </Route>
 
       </Switch>
-    </main>
+    </main >
   );
 }
