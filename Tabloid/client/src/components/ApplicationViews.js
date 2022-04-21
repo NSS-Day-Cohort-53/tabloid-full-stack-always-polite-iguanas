@@ -8,6 +8,7 @@ import PostList from "./posts/PostList";
 import PostDetails from "./posts/PostDetails";
 import CategoryList from "./Categories/categoryList";
 import CategoryForm from "./Categories/categoryForm";
+import CommentForm from "./Comments/CommentForm";
 import DeleteCategory from "./Categories/categoryDelete";
 
 export default function ApplicationViews({ isLoggedIn }) {
@@ -30,6 +31,9 @@ export default function ApplicationViews({ isLoggedIn }) {
         <Route path="/categories/new" exact>
         {isLoggedIn ? <Hello /> : <Redirect to="/login" />}
           <CategoryForm />
+        </Route>
+        <Route path="/posts/newComment/:postId(\d+)">
+          <CommentForm />
         </Route>
        
         <Route path="/categories/delete/:id" exact>
