@@ -36,5 +36,11 @@ namespace Tabloid.Controllers
             _commentRepo.Add(comment);
             return Ok(comment);
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetAllByPostId(int id)
+        {
+            return Ok(_commentRepo.GetAllByPostId(id));
+        }
     }
 }

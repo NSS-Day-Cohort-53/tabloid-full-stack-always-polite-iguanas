@@ -31,5 +31,41 @@ namespace Tabloid.Repositories
                 }
             }
         }
+        public List<Comment> GetAllByPostId(int postId)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                 SELECT Id, PostId, UserProfileId, Subject, Content, CreateDateTime FROM Comment
+                 WHERE PostId = @postId
+                 ";
+
+                    DbUtils.AddParameter(cmd, "@postId", postId);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+
+                        var comments = new List<Comment>();
+                        while (reader.Read())
+                        {
+                            comments.Add(new Comment()
+                            {
+                                Id = DbUtils.GetInt(reader, "Id"),
+                                PostId = DbUtils.GetInt(reader, "PostId"),
+                                UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
+                                Subject = DbUtils.GetString(reader, "Subject"),
+                                Content = DbUtils.GetString(reader, "Content"),
+                                CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime")
+                            });
+                        }
+
+                        return comments;
+                    }
+                }
+            }
+        }
     }
 }
