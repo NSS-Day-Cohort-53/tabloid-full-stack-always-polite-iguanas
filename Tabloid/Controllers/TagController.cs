@@ -41,23 +41,27 @@ namespace Tabloid.Controllers
             return Ok(tag);
         }
 
-        //[HttpPut("{id}")]
-        //public IActionResult Put(int id, Tag tag)
-        //{
-        //    if (id != tag.Id)
-        //    {
-        //        return NotFound();
-        //    }
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            UserProfile loggedInUser = GetCurrentUserProfile();
+            if (loggedInUser.UserTypeId != 1)
+            {
+                return Forbid();
 
-        //    _tagRepository.Update(tag);
-        //    return NoContent();
-        //}
+            }
+            else
+            {
 
-        //[HttpDelete("{id}")]
-        //public IActionResult Delete(int id)
-        //{
-        //    _tagRepository.Delete(id);
-        //    return NoContent();
-        //}
+                _tagRepository.Delete(id);
+                return NoContent();
+
+            }
+        }
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
+        }
     }
 }
