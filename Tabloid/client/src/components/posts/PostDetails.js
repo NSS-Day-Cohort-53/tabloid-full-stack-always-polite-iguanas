@@ -18,6 +18,7 @@ const PostDetails = () => {
   useEffect(() => {
     getPosts(postId);
   }, [postId]);
+
   const getComments = (id) => {
     getAllPostComments(id).then(comments => setComments(comments));
   };
@@ -53,7 +54,7 @@ const PostDetails = () => {
       {comments.map(comment => {
         return (
           <ListGroupItem key={comment.id}>
-        <Comment comment={comment}/>
+        <Comment comment={comment} postId={postId} getComments={getComments}/>
         </ListGroupItem>
         )})}
       </ListGroup>
