@@ -41,6 +41,27 @@ namespace Tabloid.Controllers
             return Ok(tag);
         }
 
+
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, Tag tag)
+        {
+            UserProfile loggedInUser = GetCurrentUserProfile();
+            if (loggedInUser.UserTypeId != 1)
+            {
+                return Forbid();
+            }
+            else
+            {
+                if (id != tag.Id)
+                {
+                    return BadRequest();
+                }
+                _tagRepository.Update(tag);
+                return Ok(tag);
+
+            }
+        }
+
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
