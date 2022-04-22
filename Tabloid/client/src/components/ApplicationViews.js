@@ -9,12 +9,13 @@ import MyPostList from "./posts/MyPostList";
 import PostDetails from "./posts/PostDetails";
 import CategoryList from "./Categories/categoryList";
 import CategoryForm from "./Categories/categoryForm";
-import TagForm from "./Tag/tagForm";
+import TagForm from "./Tag/TagForm";
 import CommentForm from "./Comments/CommentForm";
 import DeleteCategory from "./Categories/categoryDelete";
 import EditCategory from "./Categories/categoryEdit";
+import DeleteTag from "./Tag/TagDelete"
+import EditTag from "./Tag/TagEdit"
 import UserList from "./users/userList";
-import DeleteTag from "./Tag/tagDelete"
 
 export default function ApplicationViews({ isLoggedIn }) {
   return (
@@ -50,7 +51,7 @@ export default function ApplicationViews({ isLoggedIn }) {
           {isLoggedIn ? <EditCategory /> : <Redirect to="/login" />}
         </Route>
         <Route path="/userProfiles" exact>
-          {isLoggedIn ? <UserList/> : <Redirect to="/login" />}
+          {isLoggedIn ? <UserList /> : <Redirect to="/login" />}
         </Route>
 
         <Route path="/tags" exact>
@@ -63,6 +64,10 @@ export default function ApplicationViews({ isLoggedIn }) {
 
         <Route path="/tags/delete/:id(\d+)" exact>
           {isLoggedIn ? <DeleteTag /> : <Redirect to="/login" />}
+        </Route>
+
+        <Route path="/tags/edit/:id(\d+)" exact>
+          {isLoggedIn ? <EditTag /> : <Redirect to="/login" />}
         </Route>
 
         <Route path="/login">
@@ -78,3 +83,5 @@ export default function ApplicationViews({ isLoggedIn }) {
     </main>
   );
 }
+
+//test
