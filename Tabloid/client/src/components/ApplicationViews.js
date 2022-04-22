@@ -74,3 +74,5 @@ export default function ApplicationViews({ isLoggedIn }) {
     </main >
   );
 }
+
+//test
