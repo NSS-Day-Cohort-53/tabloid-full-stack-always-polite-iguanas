@@ -4,7 +4,9 @@ import { Card, CardBody } from "reactstrap";
 const Post = ({ post }) => {
   return (
     <Card>
-      <p>Posted by: {post.userProfile.displayName}</p>
+      <p>
+        <small>Posted by: {post.userProfile.displayName}</small>
+      </p>
       <CardBody>
         <p>
           <strong>Title: {post.title}</strong>
