@@ -119,9 +119,9 @@ namespace Tabloid.Repositories
                         return users;
                     }
 
-                }
-            }
-        }
+        //        }
+        //    }
+        //}
 
         /*
         public UserProfile GetByFirebaseUserId(string firebaseUserId)
