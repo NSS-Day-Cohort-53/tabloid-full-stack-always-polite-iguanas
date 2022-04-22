@@ -34,3 +34,19 @@ export const getPostById = (id) => {
     });
   });
 };
+export const getMyPosts = () => {
+  return getToken().then((token) => {
+    return fetch(`${_apiUrl}/myposts`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((resp) => {
+      if (resp.ok) {
+        return resp.json();
+      } else {
+        throw new Error("An error occurred retrieving post");
+      }
+    });
+  });
+};
