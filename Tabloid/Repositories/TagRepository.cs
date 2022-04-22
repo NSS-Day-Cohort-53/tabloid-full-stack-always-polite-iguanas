@@ -44,7 +44,7 @@ namespace Tabloid.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT Id, [Name],
+                        SELECT Id, [Name]
                           FROM Tag
                          WHERE Id = @id;";
                     DbUtils.AddParameter(cmd, "@id", id);
@@ -113,22 +113,18 @@ namespace Tabloid.Repositories
         //            }
         //        }
 
-        //        public void Delete(int id)
-        //        {
-        //            using (var conn = Connection)
-        //            {
-        //                conn.Open();
-        //                using (var cmd = conn.CreateCommand())
-        //                {
-        //                    cmd.CommandText = "DELETE FROM BeanVariety WHERE Id = @id";
-        //                    cmd.Parameters.AddWithValue("@id", id);
-
-        //                    cmd.ExecuteNonQuery();
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
-
+        public void Delete(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = "DELETE FROM Tag WHERE Id = @id";
+                    DbUtils.AddParameter(cmd, "@id", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

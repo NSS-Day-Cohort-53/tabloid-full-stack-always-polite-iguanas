@@ -13,6 +13,7 @@ import TagForm from "./Tag/tagForm";
 import CommentForm from "./Comments/CommentForm";
 import DeleteCategory from "./Categories/categoryDelete";
 import EditCategory from "./Categories/categoryEdit";
+import DeleteTag from "./Tag/tagDelete"
 
 export default function ApplicationViews({ isLoggedIn }) {
   return (
@@ -48,6 +49,18 @@ export default function ApplicationViews({ isLoggedIn }) {
           {isLoggedIn ? <EditCategory /> : <Redirect to="/login" />}
         </Route>
 
+        <Route path="/tags" exact>
+          {isLoggedIn ? <TagList /> : <Redirect to="/login" />}
+        </Route>
+
+        <Route path="/tags/new">
+          <TagForm />
+        </Route>
+
+        <Route path="/tags/delete/:id(\d+)" exact>
+          {isLoggedIn ? <DeleteTag /> : <Redirect to="/login" />}
+        </Route>
+
         <Route path="/login">
           <Login />
         </Route>
@@ -56,13 +69,7 @@ export default function ApplicationViews({ isLoggedIn }) {
           <Register />
         </Route>
 
-        <Route path="/tags" exact>
-          {isLoggedIn ? <TagList /> : <Redirect to="/login" />}
-        </Route>
 
-        <Route path="/tags/new">
-          <TagForm />
-        </Route>
       </Switch>
     </main>
   );
