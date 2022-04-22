@@ -47,12 +47,6 @@ export const deleteComment = (id) => {
       headers: {
         Authorization: `Bearer ${token}`,
       },
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        throw new Error("An error occured while trying to delete this comment");
-      }
     })
-  })
-}
+  });
+};
