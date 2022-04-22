@@ -12,15 +12,14 @@ import {
 } from "reactstrap";
 import { logout } from "../modules/authManager";
 
-
 export default function Header({ isLoggedIn }) {
   const history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
-const handleLogout = () => {
-  logout();
-  history.push("/");
-}
+  const handleLogout = () => {
+    logout();
+    history.push("/");
+  };
   return (
     <div>
       <Navbar color="light" light expand="md">
@@ -41,6 +40,11 @@ const handleLogout = () => {
                 <NavItem>
                   <NavLink tag={RRNavLink} to="/posts">
                     Posts
+                  </NavLink>
+                </NavItem>
+                <NavItem>
+                  <NavLink tag={RRNavLink} to="/posts/myposts">
+                    My Posts
                   </NavLink>
                 </NavItem>
                 <NavItem>
@@ -74,7 +78,6 @@ const handleLogout = () => {
                     Logout
                   </a>
                 </NavItem>
-
               </>
             )}
             {!isLoggedIn && (
